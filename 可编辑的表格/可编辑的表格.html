@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>[DOM操作]航班起降数据</title>
+  <style>
+  *{
+    margin:0;
+    padding:0;
+  }
+  table{
+    width:96%;
+    border-bottom:1px solid #e3e3e3;
+    border-left:1px solid #e3e3e3;
+    margin:30px auto;
+  }
+  td,th{
+    border-top:1px solid #e3e3e3;
+    border-right:1px solid #e3e3e3;
+    width:16%;
+    font-size:12px;
+    line-height:38px;
+    text-align:center;
+  }
+  .insertData{
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        cursor: pointer;
+        padding:6px 12px;
+        font-weight:lighter;
+        border-radius:4px;
+        border:none;
+        outline:none;
+    }
+    .insertData:hover{
+      background-color: #286090;
+      border-color: #204d74;
+    }
+    .deleteData{
+      background-color:#c9302c;
+        color: #fff;
+        border-color: #2e6da4;
+        cursor: pointer;
+        padding:6px 12px;
+        font-weight:lighter;
+        border-radius: 4px;
+        border:none;
+        outline:none;
+    }
+    .deleteData:hover{
+      background-color: #ac2925;
+      border-color: #761c19;
+    }
+    .tem{
+      display: none;
+    }
+    .pink{
+      background-color:pink;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <thead>
+    <tr>
+      <th>标识符</th>
+      <th>机型</th>
+      <th>始发地</th>
+      <th>出发</th>
+      <th>到达</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CCA1610</td>
+      <td>A333</td>
+      <td>Changchun Longjia Int'l (CGQ)</td>
+      <td>10:59上 CST</td>
+      <td>12:52下 CST</td>
+      <td style="text-align:center" class="noEdit">
+      <input type="button" value="插入" class="insertData">
+      <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CES7181</td>
+      <td>B738</td>
+      <td>Kunming Changshui Int'l (KMG)</td>
+      <td>09:52上 CST</td>
+      <td>12:41下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CCA1842</td>
+      <td>B738</td>
+      <td>Yangzhou Taizhou (YTY)</td>
+      <td>11:14上 HKT</td>
+      <td>12:52下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CHH7130</td>
+      <td>B789</td>
+      <td>Harbin Taiping Int'l (HRB)</td>
+      <td>10:51上 CST</td>
+      <td>12:40下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CCA1256</td>
+      <td>B733</td>
+      <td>Hefei Xinqiao Airport (HFE)</td>
+      <td>11:08上 CST</td>
+      <td>12:51下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CCA1118</td>
+      <td>A321</td>
+      <td>Hohhot Baita Int'l (HET)</td>
+      <td>11:48上 CST</td>
+      <td>12:50下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CSN3717</td>
+      <td>A321</td>
+      <td>Changsha Huanghua Int'l (CSX)</td>
+      <td>10:42上 CST</td>
+      <td>12:43下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CCA938</td>
+      <td>B773</td>
+      <td>London Heathrow (LHR)</td>
+      <td>08:48下 BST</td>
+      <td>01:14下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CCA985</td>
+      <td>747</td>
+      <td>Chongqing Jiangbei Int'l (CKG)</td>
+      <td>11:07上 CST</td>
+      <td>01:20下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr>
+      <td>CSN3908</td>
+      <td>A330</td>
+      <td>
+        Shanghai Hongqiao Int'l (SHA)
+      </td>
+      <td>12:10下 CST</td>
+      <td>01:56下 CST</td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+    <tr class="tem">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td style="text-align:center" class="noEdit">
+        <input type="button" value="插入" class="insertData">
+        <input type="button" value="删除" class="deleteData">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script src="convenient.js"></script> 
+<script>
+  // 获取父级tbody,以方便为新插入或删除按钮绑定单击事件
+  var tbody=getObj("tbody")[0];
+  // console.log(tbody)
+  var Model=getObj(".tem")[0];
+  console.log(Model)
+// 获取tr
+  // var trlist=getObj("tr");
+  // console.log(trlist)
+  // 为符合条件的tr加颜色
+  // for(var i=0;i<trlist.length;i++){
+  //   if(i%2==0){
+  //     trlist[i].className="pink";
+  //   }
+  // }
+  // 事件委托插入按钮
+  tbody.onclick=function(event){
+    // 事件委托
+    _this=event.target;
+    // 进行判断只保留插入按钮的点击事件
+    if(_this.className=="insertData"){
+      // 克隆新的tr
+      var newTr=Model.cloneNode(true);
+      // 清除新tr的类名，使其显示迟来
+      newTr.className="";
+      // 将新的tr插到目标元素的后面
+      insertAfter(newTr, _this.parentNode.parentNode);
+      // console.log(newtr);
+    }
+    // 删除按钮事件
+    if(_this.className=="deleteData"){
+      tbody.removeChild(_this.parentNode.parentNode) 
+    }
+// 表格的可编辑性
+    // 进行判断（除插入与删除按钮以及th其他td均可进行编辑）
+    if(_this.className!=="noEdit"&&_this.tagName=="TD"){
+      // 获取可编辑td里面的内容
+      var text=_this.innerHTML;
+      // 创建一个input，将获取的内容放到里面；
+      var input=document.createElement("input");
+      // 清空td里面的内容，使其不会与input里面的内容发生重叠
+      _this.innerHTML="";
+      // 将创建的input插入到需要编辑的td里
+      _this.appendChild(input);
+      // 将获取的内容赋给input
+      input.value=text;
+      // 自动获取焦点
+      input.focus();
+      //失去焦点
+      input.onblur=function(){
+        //获取input里面的内容
+        var content=this.value;
+        //移除input
+        _this.removeChild(input);
+         // 将从input获取的内容重新赋值给需要编辑的td，从而td里的内容便可进行编辑
+        _this.innerHTML=content;
+      } 
+    }
+  }
+</script> 
+</body>
+</html>
