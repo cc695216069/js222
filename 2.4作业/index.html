@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>星星评分</title>
+<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	body{
+		font-size:16px;
+		color:#333;
+	}
+	li{
+		list-style:none;		
+		width:16px;
+		height:16px;
+		background-image: url(commstar.png);
+		cursor:pointer;
+		position:relative;
+		float:left;
+	}
+	.face{
+		position:absolute;
+		top:-20px;
+		left:1px;
+		display:block;
+		width:16px;
+		height:16px;
+		background-image: url(face.png);
+		display:none;
+	}
+	.focus{
+		background-position:0px 16px;
+	}
+	.wrap{
+		width:1000px;
+		margin:200px auto;
+	}
+	.title{
+		float:left;
+		margin-right:20px;
+	}
+	.commstar{
+		width:80px;
+		float:left;
+		padding-top:4px;
+		margin-right:10px;
+	}
+	.content{
+		width:400px;
+		height:200px;
+		background:yellow;
+		overflow:hidden;
+		padding:90px 100px;
+		margin:0 auto;
+		box-sizing:border-box;
+	}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="content">
+		<span class="title">快递包装</span>
+		<ul class="commstar">
+			<li index="0"><span class="face"></span></li>
+			<li index="1"><span class="face"></span></li>
+			<li index="2"><span class="face"></span></li>
+			<li index="3"><span class="face"></span></li>
+			<li index="4"><span class="face"></span></li>
+		</ul>
+		<span id="score" style="color:red">0分</span>
+	</div>
+</div>
+<script src="convenient.js"></script>
+<script>
+var starList = getObj("li")
+var score = getObj("#score");
+var facelist=getObj(".face")
+var isOnclick=false;
+var content=getObj("#content");
+//清空星星颜色 笑脸及分数 的函数
+function qingchu(){
+	//清空分数
+	score.innerHTML = "0分";
+	for(var i = 0 ; i < starList.length ; i++){
+		//清空星星颜色
+		starList[i].className = "";
+		//清空星星笑脸
+		facelist[i].style.display = "none";
+	}
+}
+function xianshi(show){
+	// 获得星星下标
+	var index = Number(show.getAttribute("index"));
+	// 得分
+	score.innerHTML = index+1 + "分";
+	for(var i = 0 ; i < starList.length ; i++){
+		if(index >= i){  
+		// 星星显示的正确位置
+			starList[i].className = "focus";
+			if( index== i){
+				facelist[i].style.display = "block";
+				// 表情显示的正确位置
+				facelist[i].style.backgroundPosition = (facelist.length-1-i)*-20 +"px" + " 0px";
+			}
+		}
+	}
+}
+bindEvent(starList,"onmouseenter",function(){
+	if(isOnclick){
+		qingchu();
+	}
+	xianshi(this);	
+})
+bindEvent(starList,"onclick",function(){
+	isOnclick = true;
+	xianshi(this);
+})
+bindEvent(starList,"onmouseout",function(){
+	if(!isOnclick){
+		qingchu();
+	}
+})
+
+</script>	
+</body>
+</html>
